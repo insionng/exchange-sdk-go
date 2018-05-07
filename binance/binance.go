@@ -23,6 +23,7 @@ type OrderBook struct {
 	Asks         []*Order
 }
 
+// DepthEvent ...
 type DepthEvent struct {
 	WSEvent
 	UpdateID int
@@ -53,6 +54,7 @@ type AggTrade struct {
 	BestPriceMatch bool
 }
 
+// AggTradeEvent ...
 type AggTradeEvent struct {
 	WSEvent
 	AggTrade
@@ -91,6 +93,7 @@ type Kline struct {
 	TakerBuyQuoteAssetVolume float64
 }
 
+// KlineEvent ...
 type KlineEvent struct {
 	WSEvent
 	Interval     Interval
@@ -100,13 +103,9 @@ type KlineEvent struct {
 	Kline
 }
 
-// TickerRequest represents Ticker request data.
-type TickerRequest struct {
-	Symbol string
-}
-
 // Ticker24 represents data for 24hr ticker.
 type Ticker24 struct {
+	Symbol             string
 	PriceChange        float64
 	PriceChangePercent float64
 	WeightedAvgPrice   float64
@@ -240,6 +239,7 @@ type Account struct {
 	Balances        []*Balance
 }
 
+// AccountEvent ...
 type AccountEvent struct {
 	WSEvent
 	Account
@@ -318,24 +318,9 @@ type Withdrawal struct {
 	Status    int
 }
 
-// Stream represents stream information.
-//
-// Read web docs to get more information about using streams.
-type Stream struct {
-	ListenKey string
-}
-
+// WSEvent ...
 type WSEvent struct {
 	Type   string
 	Time   time.Time
 	Symbol string
-}
-
-type KlineWebsocketRequest struct {
-	Symbol   string
-	Interval Interval
-}
-
-type UserDataWebsocketRequest struct {
-	ListenKey string
 }
